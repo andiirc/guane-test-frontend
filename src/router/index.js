@@ -7,6 +7,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
   },
   {
+    path: '/detail/:id',
+    name: 'Detail',
+    component: () => import(/* webpackChunkName: "detail" */ '../views/Detail.vue'),
+  },
+  {
     path: '/:catchAll(.*)*',
     name: 'PageNotFound',
     component: () => import(/* webpackChunkName: "pagenotfound" */ '../views/PageNotFound.vue'),

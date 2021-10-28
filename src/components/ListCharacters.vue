@@ -1,9 +1,10 @@
 <template>
   <section>
     <div class="characters">
-      <div class="characters__item" v-for="character in characters" :key="character.id">
+      <router-link :to="{ name: 'Detail', params: { id: character.id } }"
+        v-for="character in characters" :key="character.id" class="characters__item">
         <ItemCharacter :character="character" />
-      </div>
+      </router-link>
     </div>
   </section>
 </template>

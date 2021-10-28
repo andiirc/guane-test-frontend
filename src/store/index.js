@@ -1,9 +1,12 @@
 import { createStore } from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 
 export default createStore({
+  plugins: [createPersistedState()],
   state: {
     characters: [],
     charactersFilter: [],
+    characterFilter: {},
   },
   mutations: {
 
@@ -14,6 +17,11 @@ export default createStore({
     setCharactersFilter(state, payload) {
       state.charactersFilter = payload;
     },
+
+    setCharacterFilter(state, payload) {
+      state.characterFilter = payload;
+    },
+
   },
   actions: {
     async getCharacters({ commit }) {
@@ -26,6 +34,12 @@ export default createStore({
         console.error(error);
       }
     },
+
+    findById({ commit, state }, id) {
+      const result = state.characters.find((character) => character.id === Number(id));
+      commit('setCharacterFilter', result);
+    },
+
   },
   modules: {
   },
