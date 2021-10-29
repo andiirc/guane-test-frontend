@@ -49,7 +49,7 @@ body{
     }
     .link__item{
       color: $text-secundary;
-      font-size: 20px;
+      font-size: 1.8rem;
       text-align: center;
       text-decoration: none;
       -webkit-appearance: button;
@@ -57,6 +57,7 @@ body{
       appearance: bottom;
       margin: 20px 20px;
       &.router-link-exact-active {
+        font-size: 1.8rem;
         border-bottom: 3px solid $background-secundary;
       }
     }

@@ -1,16 +1,19 @@
 <template>
   <div class="container">
     <ListCharacters />
+    <Paginate />
   </div>
 </template>
 
 <script>
 import ListCharacters from '@/components/ListCharacters.vue';
+import Paginate from '@/components/Paginate.vue';
 
 export default {
   name: 'Home',
   components: {
     ListCharacters,
+    Paginate,
   },
 };
 </script>
