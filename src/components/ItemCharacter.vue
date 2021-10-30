@@ -31,19 +31,20 @@ export default {
 
 <style lang="scss">
 .character {
-    // box-shadow: 0 0 10px 10px $background-body;
+    flex-grow: 1;
     background-color: $background-tertiary;
-    border-radius: 20px;
-    overflow: hidden;
+    border-radius: 15px 15px;
     cursor: pointer;
     transition: transform 200ms ease-in-out;
-    height: 100%;
+    margin: 20px;
+    img{
+      border-radius: 15px 15px 0px 0px;
+    }
     &:hover{
         transform: scale(1.05);
         background-color: $background-secundary;
         .character__info{
             .status {
-                font-weight: bold;
                 span{
                     color: $text-primary;
                 }
@@ -57,7 +58,6 @@ export default {
         }
         h3{
             font-family: 'Schoolbell', serif;
-            font-size: 30px;
             color: $text-primary;
             text-shadow: 0.02em 0.02em 0.02em #02b1c8,
                  -0.02em -0.02em 0.02em #02b1c8,
@@ -68,9 +68,10 @@ export default {
     }
     &__info{
         padding: 1.5rem;
+        font-weight: bold;
         .status{
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 0.5rem;
             span {
                 color: $text-secundary;
@@ -78,7 +79,8 @@ export default {
                     width: 10px;
                     height: 10px;
                     border-radius: 50%;
-                    margin-right: 0.5rem;
+                    margin-top: 8px;
+                    margin-right: 12px;
                 }
             }
             .alive {
@@ -159,10 +161,14 @@ export default {
             }
         }
         .origin {
-            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
             color: $text-secundary;
         }
         .location {
+            display: flex;
+            align-items: flex-start;
             margin-top: 0.5rem;
             color: $text-tertiary;
         }
@@ -171,8 +177,9 @@ export default {
         margin-bottom: 0.5rem;
     }
     &__name{
+        display: flex;
+        justify-content: center;
         font-family: 'Schoolbell', serif;
-        font-size: 30px;
         color: #02b1c8;
         text-shadow: 0.02em 0.02em 0.02em $text-quaternary,
                  -0.02em -0.02em 0.02em $text-quaternary,

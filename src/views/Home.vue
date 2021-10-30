@@ -20,9 +20,8 @@ export default {
 
 <style lang="scss">
 .container {
-  width: 980px;
-  max-width: 90%;
-  margin: 5rem auto;
+  width: 90%;
+  margin: 40px auto;
 }
 
 h1{

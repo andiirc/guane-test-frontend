@@ -1,12 +1,10 @@
 <template>
-  <section>
-    <div class="characters">
-      <router-link :to="{ name: 'Detail', params: { id: character.id } }"
-        v-for="character in characters" :key="character.id" class="characters__item">
-        <ItemCharacter :character="character" />
-      </router-link>
-    </div>
-  </section>
+  <div class="characters">
+    <router-link :to="{ name: 'Detail', params: { id: character.id } }"
+      v-for="character in characters" :key="character.id">
+      <ItemCharacter :character="character" />
+    </router-link>
+  </div>
 </template>
 
 <script>
@@ -33,11 +31,13 @@ export default {
 
  <style lang="scss">
  .characters {
-     list-style: none;
-     display: grid;
-     grid-template-columns: repeat(3, 1fr);
-     gap: 3rem;
-     margin: 3rem 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:center;
+    text-align: center;
+    margin: 0 auto;
+    list-style: none;
+    width: 90%;
      a {
          text-decoration: none;
      }
