@@ -32,8 +32,13 @@
             <img src="../assets/images/female.svg" alt="female" >
             <span> {{ character.gender}} </span>
         </div>
+        <div v-else-if="character.gender === 'Male'"
+          class="character__card__information__data__item">
+          <img src="../assets/images/male.svg" alt="male" >
+            <span> {{ character.gender}} </span>
+        </div>
         <div v-else class="character__card__information__data__item">
-            <img src="../assets/images/male.svg" alt="male" >
+            <img src="../assets/images/unknown.svg" alt="unknown">
             <span> {{ character.gender}} </span>
         </div>
       </div>
