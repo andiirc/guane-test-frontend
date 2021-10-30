@@ -53,10 +53,10 @@
 </template>
 
 <script>
-import { computed, onBeforeMount } from 'vue';
+import { computed, onBeforeMount, watch } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-// import router from '@/router';
+import router from '@/router';
 
 export default {
   name: 'DetailCharacter',
@@ -67,6 +67,12 @@ export default {
     const character = computed(() => store.state.characterFilter);
 
     onBeforeMount(() => store.dispatch('findById', route.params.id));
+
+    watch(character, () => {
+      if (character.value === undefined) {
+        router.push({ name: 'PageNotFound' });
+      }
+    });
 
     return { character };
   },
