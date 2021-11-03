@@ -1,10 +1,10 @@
 import { createStore } from 'vuex';
 import http from 'axios';
-// import createPersistedState from 'vuex-persistedstate';
+import createPersistedState from 'vuex-persistedstate';
 import chunks from '../utils/index';
 
 export default createStore({
-  // plugins: [createPersistedState()],
+  plugins: [createPersistedState()],
   state: {
     characters: [],
     charactersFilter: [],
