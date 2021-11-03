@@ -1,6 +1,6 @@
 <template>
     <div class="charecter_profile">
-      <DetailCharacter />
+      <DetailCharacter/>
     </div>
 </template>
 
@@ -19,8 +19,6 @@ export default {
 .charecter_profile {
   display: block;
   margin:0 auto;
-  //background-image: linear-gradient(10deg, $text-quaternary 0%, snow 100%);
-  //background-image: linear-gradient(-5deg, $text-quaternary 0%, snow 100%);
   width: 100%;
 }
 </style>

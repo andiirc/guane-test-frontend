@@ -58,10 +58,10 @@
 </template>
 
 <script>
-import { computed, onBeforeMount, watch } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import router from '@/router';
+import router from '@/router/index';
 
 export default {
   name: 'DetailCharacter',
@@ -69,14 +69,10 @@ export default {
     const store = useStore();
     const route = useRoute();
 
-    const character = computed(() => store.state.characterFilter);
+    const character = computed(() => store.getters.findById(route.params.id));
 
-    onBeforeMount(() => store.dispatch('findById', route.params.id));
-
-    watch(character, () => {
-      if (character.value === undefined) {
-        router.push({ name: 'PageNotFound' });
-      }
+    onMounted(() => {
+      if (character.value === undefined) router.push({ name: 'PageNotFound' });
     });
 
     return { character };

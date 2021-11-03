@@ -1,14 +1,13 @@
 import { createStore } from 'vuex';
 import http from 'axios';
-import createPersistedState from 'vuex-persistedstate';
+// import createPersistedState from 'vuex-persistedstate';
 import chunks from '../utils/index';
 
 export default createStore({
-  plugins: [createPersistedState()],
+  // plugins: [createPersistedState()],
   state: {
     characters: [],
     charactersFilter: [],
-    characterFilter: {},
     page: 0,
     currentPage: 1,
     totalPages: 0,
@@ -21,10 +20,6 @@ export default createStore({
 
     SET_CHARACTERS_FILTER(state, payload) {
       state.charactersFilter = payload;
-    },
-
-    SET_CHARACTER_FILTER(state, payload) {
-      state.characterFilter = payload;
     },
 
     SET_TOTAL_PAGES(state, payload) {
@@ -59,11 +54,6 @@ export default createStore({
         .catch((error) => console.log(error));
     },
 
-    findById({ commit, state }, id) {
-      const result = state.charactersFilter.find((character) => character.id === Number(id));
-      commit('SET_CHARACTER_FILTER', result);
-    },
-
     nextPage({ commit, state }) {
       const page = state.page + 1;
       const currentPage = state.currentPage + 1;
@@ -81,6 +71,11 @@ export default createStore({
       commit('SET_CURRENT_PAGE', currentPage);
       commit('SET_CHARACTERS_FILTER', result);
     },
+
+  },
+  getters: {
+
+    findById: (state) => (id) => state.charactersFilter.find((item) => item.id === Number(id)),
 
   },
   modules: {
