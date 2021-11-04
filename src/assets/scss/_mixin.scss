@@ -79,7 +79,27 @@
     background: $bgc;
     max-width: 400px;
     width: 100%;
-    @media (min-width: 300px) {
+    @include media(mobile){
         width: 90%;
     }
 }
+
+@mixin arrowTransform( $angle, $x: 0, $y: 0 ) {
+    i:first-child {
+      transform: translate( $x, $y ) rotate( $angle );
+    }
+  
+    i:last-child {
+      transform: translate( $x, -$y ) rotate( -$angle );
+    }
+}
+
+$breakpoints: ( mobile: 415px );
+
+@mixin media($breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
+
