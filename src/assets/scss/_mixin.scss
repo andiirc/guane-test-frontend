@@ -71,3 +71,15 @@
     background-color: rgba(255,255,255,1);
     box-shadow: 4px 4px 6px 7px $bsc;
 }
+
+@mixin card-wrap($mh, $bgc) {
+    display: block;
+    min-height: $mh;
+    box-shadow: 0px 8px 60px -10px rgba(13,28,39,0.6);
+    background: $bgc;
+    max-width: 400px;
+    width: 100%;
+    @media (min-width: 300px) {
+        width: 90%;
+    }
+}

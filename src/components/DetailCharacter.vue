@@ -83,15 +83,10 @@ export default {
 <style lang="scss" scoped>
 
 .character__card{
-  display: block;
-  min-height: 300px;
+  border-radius: 15px 15px 0px 0px;
   text-align: center;
   margin: 100px auto 0px;
-  box-shadow: 0px 8px 60px -10px rgba(13,28,39,0.6);
-  background: $background-tertiary;
-  border-radius: 15px 15px 0px 0px;
-  max-width: 400px;
-  width: 100%;
+  @include card-wrap(300px, $background-tertiary);
   &__image {
     display: block;
     width: 40%;
@@ -175,14 +170,9 @@ export default {
 }
 
 .character__card__information{
-  display: block;
-  min-height: 100px;
-  margin: 0px auto 20px;
-  box-shadow: 0px 8px 60px -10px rgba(13,28,39,0.6);
-  background: $text-quaternary;
   border-radius: 0px 0px 15px 15px;
-  max-width: 400px;
-  width: 100%;
+  margin: 0px auto 20px;
+  @include card-wrap(100px, $text-quaternary);
   &__data{
     color:$text-primary;
     display: inline-block;
