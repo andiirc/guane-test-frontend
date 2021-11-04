@@ -1,0 +1,73 @@
+@mixin animated-title($text-color, $shadow-color) {
+    font-family: 'Schoolbell', serif;
+    color: $text-color;
+    text-shadow: 0.02em 0.02em 0.02em $shadow-color,
+    -0.02em -0.02em 0.02em $shadow-color,
+    0 0 0.2em $shadow-color;
+    animation: textShadow 2s linear infinite alternate;
+}
+
+@mixin animation-blink($name, $bgf, $bgpo, $bgpt, $bgt){
+    -webkit-animation: #{$name} 0.5s infinite;
+    -moz-animation: #{$name} 0.5s infinite;
+    -ms-animation: #{$name} 0.5s infinite;
+    -o-animation: #{$name} 0.5s infinite;
+    animation: #{$name} 0.5s infinite;
+    @keyframes #{$name}{
+        from { 
+            background-color:  $bgf;  
+        }
+        50% {
+            background-color: $bgpo;  
+            box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px,
+            inset #441313 0 -1px 9px, $bgpt 0 2px 0; 
+        }
+        to { 
+            background-color: $bgt; 
+        }
+    }
+}
+
+@mixin led-blink {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #24E0FF;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2) inset,
+    0 2px 0px rgba(255, 255, 255, 0.3), 0 -1px 0px rgba(0, 0, 0, 0.3);
+}
+
+@mixin led-wrap{
+    position: absolute;
+    content: '';
+    top: 3px;
+    left: 3px;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+}
+
+@mixin led-color($bgc, $bsc, $bdc) {
+    background-color: $bgc;
+    box-shadow: 0px 0px 10px 5px $bsc;
+    border: 3px solid $bdc;
+}
+
+@mixin let-wrap-hilight($bsc) {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: rgba(255,255,255,0.5);
+    top: 7px;
+    left: 7px;
+    box-shadow: 3px 4px 7px 9px $bsc;
+}
+
+@mixin led-hilight($bsc){
+    background-color: rgba(255,255,255,1);
+    box-shadow: 4px 4px 6px 7px $bsc;
+}
