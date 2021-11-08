@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageNotFound render html 1`] = `
+<div class="message">
+  <div class="message__img"><span>44</span></div>
+  <p>La página que está intentando buscar<br> no se encuentra en este universo.</p>
+</div>
+`;
