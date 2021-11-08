@@ -1,10 +1,19 @@
 import { createStore } from 'vuex';
 import http from 'axios';
 import createPersistedState from 'vuex-persistedstate';
-import chunks from '../utils/index';
+import SecureLS from 'secure-ls';
+import { merge, chunks } from '../utils/index';
+
+const ls = new SecureLS({ isCompression: false });
 
 export default createStore({
-  plugins: [createPersistedState()],
+  plugins: [createPersistedState({
+    storage: {
+      getItem: (key) => ls.get(key),
+      setItem: (key, value) => ls.set(key, value),
+      removeItem: (key) => ls.remove(key),
+    },
+  })],
   state: {
     characters: [],
     charactersFilter: [],
@@ -33,7 +42,6 @@ export default createStore({
     SET_CURRENT_PAGE(state, payload) {
       state.currentPage = payload;
     },
-
   },
   actions: {
 
@@ -41,17 +49,21 @@ export default createStore({
       const start = 1;
       const end = 2;
 
-      await Promise.all([start, end].map((id) => http.get(`https://rickandmortyapi.com/api/character?page=${id}`)
-        .then((response) => response.data)))
-        .then((response) => {
-          const allcharacters = [...new Set([...response[start - 1].results,
-            ...response[end - 1].results])];
-          const characters = [...chunks(allcharacters, 10)];
-          commit('SET_CHARACTERS', characters);
-          commit('SET_CHARACTERS_FILTER', characters[state.page]);
-          commit('SET_TOTAL_PAGES', characters.length);
-        })
-        .catch((error) => console.log(error));
+      const requests = [start, end].map((id) => http.get(`https://rickandmortyapi.com/api/character?page=${id}`)
+        .then((response) => response.data)
+        .catch((error) => error));
+
+      try {
+        const allresponse = await Promise.all(requests);
+        const charactersData = allresponse;
+        const allcharacters = merge(charactersData);
+        const characters = [...chunks(allcharacters, 10)];
+        commit('SET_CHARACTERS', characters);
+        commit('SET_CHARACTERS_FILTER', characters[state.page]);
+        commit('SET_TOTAL_PAGES', characters.length);
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     nextPage({ commit, state }) {

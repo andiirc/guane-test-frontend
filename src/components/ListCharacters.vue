@@ -2,7 +2,7 @@
   <div class="characters">
     <router-link :to="{ name: 'Detail', params: { id: character.id } }"
       v-for="character in characters" :key="character.id">
-      <ItemCharacter :character="character" />
+        <ItemCharacter :character="character" />
     </router-link>
   </div>
 </template>
